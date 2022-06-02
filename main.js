@@ -11,20 +11,28 @@ do {
 function menuPrincipal() {
     let opcion;
 
-    do{
-        opcion = parseInt(prompt(`Menu: \n 1- Sumar \n 2- Restar \n 3- Dividir \n 4- Multiplicar` ));
+    do {
+        opcion = parseInt(prompt(`Menu: \n 1- Sumar \n 2- Restar \n 3- Dividir \n 4- Multiplicar`));
     } while (opcion != 1 && opcion != 2 && opcion != 3 && opcion != 4);
 
-    if (opcion == 1) {return "Sumar";}
-    if (opcion == 2) {return "Restar";}
-    if (opcion == 3) {return "Dividir";}
-    if (opcion == 4) {return "Multiplicar"}
-} 
+    if (opcion == 1) {
+        return "Sumar";
+    }
+    if (opcion == 2) {
+        return "Restar";
+    }
+    if (opcion == 3) {
+        return "Dividir";
+    }
+    if (opcion == 4) {
+        return "Multiplicar"
+    }
+}
 
 // Llamada de cada funcion
 function operaciones(menu) {
 
-    switch(menu){
+    switch (menu) {
         case "Sumar":
             sumar();
             break;
@@ -36,12 +44,12 @@ function operaciones(menu) {
             break;
         case "Multiplicar":
             multiplicar();
-            break;    
+            break;
     }
 }
 
 // Sumar 
-function sumar(){
+function sumar() {
     let num1 = Number((prompt("Ingrese el primer numero que quiera sumar")))
     let num2 = Number((prompt("Ingrese el segundo numero que quiera sumar")))
     let resultado = num1 + num2
@@ -49,15 +57,15 @@ function sumar(){
 }
 
 // Restar
-function restar(){
+function restar() {
     let num1 = parseInt((prompt("Ingrese el primer numero que quiera restar")))
     let num2 = parseInt((prompt("Ingrese el segundo numero que quiera restar")))
-    let resultado = num1 -  num2
+    let resultado = num1 - num2
     alert("El resultado es " + resultado)
 }
 
 // Dividir 
-function dividir(){
+function dividir() {
     let num1 = Number((prompt("Ingrese el primer numero que quiera dividir")))
     let num2 = Number((prompt("Ingrese el segundo numero que quiera dividir")))
     let resultado = num1 / num2
@@ -65,7 +73,7 @@ function dividir(){
 }
 
 // multiplicar 
-function multiplicar(){
+function multiplicar() {
     let num1 = Number((prompt("Ingrese el primer numero que quiera multiplicar")))
     let num2 = Number((prompt("Ingrese el segundo numero que quiera multiplicar")))
     let resultado = num1 * num2
@@ -76,3 +84,23 @@ function multiplicar(){
 function continuar() {
     return (prompt('Quiere hacer otra accion? \n 1- Si \n 2- No'));
 }
+
+
+/* Lista arrays */
+
+let lista = [];
+
+function armarLista(menuL) {
+    let item = prompt("Agrega un item a la lista")
+    lista.push(item)
+    let pregunta = prompt("Desea agregar otro item?")
+    if (pregunta == "si") {
+        return armarLista()
+    }
+    if (pregunta == "no") {
+        return false
+    }
+}
+
+armarLista();
+alert(lista)
