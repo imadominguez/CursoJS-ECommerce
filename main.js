@@ -1,78 +1,85 @@
-// Damos la bienvenida
-alert("Bienvenidos a tu calculadora")
+const contenedorProductos = document.getElementById("contenedor-productos")
 
-do {
-    let menu = menuPrincipal();
-    let operacion = operaciones(menu);
+const contenedorCarrito = document.getElementById("carrito-contenedor")
 
-} while (continuar() == 1);
+const botonVaciar = document.getElementById("carritoVaciar")
 
-// Menu calculadora
-function menuPrincipal() {
-    let opcion;
+const unidadCarrito = document.getElementById("boton-carrito")
 
-    do{
-        opcion = parseInt(prompt(`Menu: \n 1- Sumar \n 2- Restar \n 3- Dividir \n 4- Multiplicar` ));
-    } while (opcion != 1 && opcion != 2 && opcion != 3 && opcion != 4);
+const precioTotal = document.getElementById("precioTotal")
 
-    if (opcion == 1) {return "Sumar";}
-    if (opcion == 2) {return "Restar";}
-    if (opcion == 3) {return "Dividir";}
-    if (opcion == 4) {return "Multiplicar"}
-} 
 
-// Llamada de cada funcion
-function operaciones(menu) {
+/* Agregar los productos al carrito, creamos variable "carrito" */
+let carrito = []
 
-    switch(menu){
-        case "Sumar":
-            sumar();
-            break;
-        case "Restar":
-            restar();
-            break;
-        case "Dividir":
-            dividir();
-            break;
-        case "Multiplicar":
-            multiplicar();
-            break;    
-    }
+
+/* Recorremos el array de stock con un forEach */
+stockProductos.forEach((producto) => {
+    /* Aca voy a crear un div de los productos para inyectar al HTML */
+    const divHTML = document.createElement("div")
+    divHTML.classList.add("card")
+    divHTML.classList.add("text-white")
+    divHTML.classList.add("bg-dark")
+    divHTML.innerHTML = `
+    <img src=${producto.img} class="card-img-top" alt="">
+    <div class="card-body">
+        <h5 class="card-title">${producto.nombre}</h5>
+        <p class="card-text">${producto.desc}</p>
+        <p class="precio-producto">${producto.precio}</p>
+        <a href="#" id="agregar${producto.id}" class="btn btn-primary">Comprar<i class='bx bxs-cart'></i></a>
+    </div>
+  `
+  contenedorProductos.appendChild(divHTML)
+
+  const boton = document.getElementById(`agregar${producto.id}`)
+  boton.addEventListener("click", () => {
+      agregalAlCarrito(producto.id)
+  })
+})
+
+
+/* Creamos una funcion para agregar los productos al carrito */
+const agregalAlCarrito = (prodId) => {
+    const item = stockProductos.find ((prod) => prod.id === prodId)
+    carrito.push(item)
+    actualizarCarrito()
 }
 
-// Sumar 
-function sumar(){
-    let num1 = Number((prompt("Ingrese el primer numero que quiera sumar")))
-    let num2 = Number((prompt("Ingrese el segundo numero que quiera sumar")))
-    let resultado = num1 + num2
-    alert("El resultado es " + resultado)
+const eliminarDelCarrito = (prodId) => {
+    const item = carrito.find((prod) => prod.id === prodId)
+    const indice = carrito.indexOf(item)
+    carrito.splice(indice, 1)
+    actualizarCarrito()
 }
 
-// Restar
-function restar(){
-    let num1 = parseInt((prompt("Ingrese el primer numero que quiera restar")))
-    let num2 = parseInt((prompt("Ingrese el segundo numero que quiera restar")))
-    let resultado = num1 -  num2
-    alert("El resultado es " + resultado)
+
+/* Actualizar carrito */
+const actualizarCarrito = () => {
+    contenedorCarrito.innerHTML = ""
+
+    carrito.forEach((prod) => {
+        const div = document.createElement(`div`)
+        div.className = ("carrito-contenedor")
+        div.innerHTML = `
+        <p>${prod.nombre}</p>
+        <p>Precio: ${prod.precio}</p>
+        <p>Cantidad: <span id="cantidad">${prod.cantidad}</span></p>
+        <button onclick="eliminarDelCarrito(${prod.id})"><i class='bx bx-x'></i></button>
+        `
+        contenedorCarrito.appendChild(div)
+        
+    })
+    
+    unidadCarrito.innerText = carrito.length
+    precioTotal.innerText = carrito.reduce((acc, prod) => acc + prod.precio, 0)
 }
 
-// Dividir 
-function dividir(){
-    let num1 = Number((prompt("Ingrese el primer numero que quiera dividir")))
-    let num2 = Number((prompt("Ingrese el segundo numero que quiera dividir")))
-    let resultado = num1 / num2
-    alert("El resultado es " + resultado)
-}
+botonVaciar.addEventListener("click", () =>{
+    carrito.length = 0
+    actualizarCarrito()
+})
 
-// multiplicar 
-function multiplicar(){
-    let num1 = Number((prompt("Ingrese el primer numero que quiera multiplicar")))
-    let num2 = Number((prompt("Ingrese el segundo numero que quiera multiplicar")))
-    let resultado = num1 * num2
-    alert("El resultado es " + resultado)
-}
 
-// Validacion
-function continuar() {
-    return (prompt('Quiere hacer otra accion? \n 1- Si \n 2- No'));
-}
+
+
+
