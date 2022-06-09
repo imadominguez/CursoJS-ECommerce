@@ -8,10 +8,8 @@ const unidadCarrito = document.getElementById("boton-carrito")
 
 const precioTotal = document.getElementById("precioTotal")
 
-
 /* Agregar los productos al carrito, creamos variable "carrito" */
 let carrito = []
-
 
 /* Recorremos el array de stock con un forEach */
 stockProductos.forEach((producto) => {
@@ -78,8 +76,3 @@ botonVaciar.addEventListener("click", () =>{
     carrito.length = 0
     actualizarCarrito()
 })
-
-
-
-
-
