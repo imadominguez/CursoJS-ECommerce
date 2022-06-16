@@ -38,17 +38,7 @@ body{
 }
 
 .boton-carrito{
-    background-color: var(--color-3);
-    padding: 10px 30px;
-    font-size: 1.3rem;
-    border-radius: 10px;
-    cursor: pointer;
-    border: none;
-    transition: all 0.5s ease;
-}
-
-.boton-carrito:hover{
-    background-color: var(--color-4);
+        padding: 6px 30px;
 }
 
 #contenedor-productos{
