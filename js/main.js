@@ -57,6 +57,13 @@ const agregalAlCarrito = (prodId) => {
         const item = stockProductos.find((prod) => prod.id === prodId)
         carrito.push(item)
     }
+    Swal.fire({
+        position: 'top-end',
+        icon: 'success',
+        title: 'Agregado al carrito',
+        showConfirmButton: false,
+        timer: 800
+      })
     actualizarCarrito()
 }
 
@@ -66,7 +73,8 @@ const eliminarDelCarrito = (prodId) => {
     carrito.splice(indice, 1)
     actualizarCarrito()
     localStorage.removeItem(prodId)
-}
+    }
+
 
 
 /* Actualizar carrito */
@@ -95,4 +103,14 @@ botonVaciar.addEventListener("click", () => {
     carrito.length = 0
     actualizarCarrito()
     localStorage.clear()
+    Swal.fire({
+        position: 'top-start',
+        icon: 'success',
+        title: 'Carrito eliminado',
+        showConfirmButton: false,
+        timer: 900
+      })
+
+
 })
+
