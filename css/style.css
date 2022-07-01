@@ -41,6 +41,15 @@ body{
         padding: 6px 30px;
 }
 
+.btn-primary, .btn-primary:hover, .btn-primary:focus {
+    background-color: var(--color-4);
+    border-color: var(--color-4);
+}
+
+.btn-primary:hover {
+    opacity: 0.8;
+}
+
 #contenedor-productos{
     margin-top: 50px;
     height: 100vh;
