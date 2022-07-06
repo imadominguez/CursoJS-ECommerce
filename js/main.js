@@ -13,21 +13,22 @@ let carrito = []
 
 /* LocalStorage */
 document.addEventListener("DOMContentLoaded", () => {
-    if (localStorage.getItem("carrito")) {
-        carrito = JSON.parse(localStorage.getItem("carrito"))
-        actualizarCarrito()
+    const carritoLocalStorage = localStorage.getItem("carrito");
+    if (carritoLocalStorage) {
+        carrito = JSON.parse(carritoLocalStorage)
+        actualizarCarrito() 
     }
 })
+
+
 /* Recorremos el array de stock con un forEach */
 stockProductos.forEach((producto) => {
     /* Aca voy a crear un div de los productos para inyectar al HTML */
     const divHTML = document.createElement("div")
-    divHTML.classList.add("card")
-    divHTML.classList.add("text-white")
-    divHTML.classList.add("bg-dark")
+    divHTML.classList.add("card", "text-white", "bg-dark")
     divHTML.innerHTML = `
     <img src=${producto.img} class="card-img-top" alt="">
-    <div class="card-body d-flex flex-column justify-content-center align-items-center">
+    <div class="card-body d-flex flex-column justify-content-center align-items-center text-center">
         <h5 class="card-title">${producto.nombre}</h5>
         <p class="card-text">${producto.desc}</p>
         <p class="precio-producto">$${producto.precio}</p>
@@ -48,7 +49,7 @@ const agregalAlCarrito = (prodId) => {
     const existe = carrito.some(prod => prod.id === prodId)
 
     if (existe) {
-        const prod = carrito.map(prod => {
+        carrito.map(prod => {
             if (prod.id === prodId) {
                 prod.cantidad++
             }
@@ -57,6 +58,7 @@ const agregalAlCarrito = (prodId) => {
         const item = stockProductos.find((prod) => prod.id === prodId)
         carrito.push(item)
     }
+    localStorage.setItem("carrito", JSON.stringify(carrito))
     Swal.fire({
         position: 'top-end',
         icon: 'success',
@@ -71,11 +73,9 @@ const eliminarDelCarrito = (prodId) => {
     const item = carrito.find((prod) => prod.id === prodId)
     const indice = carrito.indexOf(item)
     carrito.splice(indice, 1)
+    localStorage.setItem("carrito", JSON.stringify(carrito))
     actualizarCarrito()
-    localStorage.removeItem(prodId)
-    }
-
-
+}
 
 /* Actualizar carrito */
 const actualizarCarrito = () => {
@@ -91,9 +91,6 @@ const actualizarCarrito = () => {
         <button onclick="eliminarDelCarrito(${prod.id})"><i class='bx bx-x'></i></button>
         `
         contenedorCarrito.appendChild(div)
-
-        localStorage.setItem("carrito", JSON.stringify(carrito))
-
     })
     unidadCarrito.innerText = carrito.length
     precioTotal.innerText = carrito.reduce((acc, prod) => acc + prod.precio, 0)
@@ -102,15 +99,13 @@ const actualizarCarrito = () => {
 botonVaciar.addEventListener("click", () => {
     carrito.length = 0
     actualizarCarrito()
-    localStorage.clear()
+    localStorage.removeItem("carrito")
     Swal.fire({
         position: 'top-start',
         icon: 'success',
         title: 'Carrito eliminado',
         showConfirmButton: false,
         timer: 900
-      })
-
-
+    })
 })
 

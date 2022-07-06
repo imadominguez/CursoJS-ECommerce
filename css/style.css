@@ -55,7 +55,7 @@ body{
     height: 100vh;
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr));
-    grid-template-rows: repeat(auto-fill, minmax(33rem, 1fr));
+    grid-template-rows: repeat(auto-fill, minmax(38rem, 1fr));
     gap: 25px;
 }
 
@@ -82,7 +82,11 @@ body{
 
 .card{
     width: 18rem;
-    height: 33rem;
+    height: 38rem;
+}
+
+.precio-producto{
+    font-size: 1.5rem;
 }
 
 @media (max-width: 770px){

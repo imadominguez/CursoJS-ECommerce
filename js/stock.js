@@ -1,5 +1,5 @@
 let stockProductos = [
-    {id: 1, nombre: "cartucho", cantidad: 1, desc: "cartucho gneiss", precio: 2500, img: "./assets/img/cartucho.jpg"},
+    {id: 1, nombre: "GNEISS 197", cantidad: 1, desc: "Cartucho Gneiss 197 Negro compatible con las impresoras EPSON XP201/ XP211/ XP401/ XP411/ XP702/ WF2532", precio: 400, img: "./assets/img/cartucho.jpg"},
     {id: 2, nombre: "cartucho", cantidad: 1, desc: "cartucho gneiss", precio: 2500, img: "./assets/img/cartucho.jpg"},
     {id: 3, nombre: "cartucho", cantidad: 1, desc: "cartucho gneiss", precio: 2500, img: "./assets/img/cartucho.jpg"},
     {id: 4, nombre: "cartucho", cantidad: 1, desc: "cartucho gneiss", precio: 2500, img: "./assets/img/cartucho.jpg"},
