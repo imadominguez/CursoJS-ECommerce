@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -15,9 +14,8 @@
     <script defer src="./js/stock.js"></script>
     <script defer src="./js/main.js"></script>
 </head>
-
 <body>
-
+    <!---------- Menu de navegacion ---------->
     <nav class="nav">
         <div class="nav_logo">
             <h1 class="logo">
@@ -34,37 +32,42 @@
         </div>
     </nav>
 
+    <!---------- Filtrado ---------->
     <div class="container mt-5">
+        <!---------- fila ---------->
         <div class="row">
+            <!---------- columna 1 ---------->
             <div class="col-4">
                 <h3 class="text-white">Precio</h3>
-                <div class="d-inline-flex flex-column">
+                <div>
                     <span id="precio-filtro" class="text-white"> $ 15000</span>
                     <input class="text-white" type="range" name="precio" id="precioFiltro">
+                    <button class="btn btn-primary mt-3">Aplicar</button>
                 </div>
             </div>
+            <!---------- columna 2 ---------->
             <div class="col-4">
                 <h3 class="text-white">Modelos</h3>
                 <select name="" id="">
                     <option value="modelo">Seleccione un modelo</option>
                     <option value="">197</option>
                 </select>
+                <button class="btn btn-primary mt-3">Aplicar</button>
             </div>
+            <!---------- columna 3 ---------->
             <div class="col-4">
 
             </div>
         </div>
+
     </div>
 
+    <!---------- contenido principal ----------->
     <main id="contenedor-productos" class="container">
-
 
     </main>
 
-
-
-
-    <!-- Modal -->
+    <!---------- Modal ---------->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
