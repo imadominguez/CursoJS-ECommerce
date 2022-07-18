@@ -8,6 +8,8 @@ const unidadCarrito = document.getElementById("boton-carrito")
 
 const precioTotal = document.getElementById("precioTotal")
 
+
+
 /* Agregar los productos al carrito, creamos variable "carrito" */
 let carrito = []
 
@@ -64,7 +66,7 @@ const agregalAlCarrito = (prodId) => {
         icon: 'success',
         title: 'Agregado al carrito',
         showConfirmButton: false,
-        timer: 800
+        timer: 650
       })
     actualizarCarrito()
 }
@@ -86,11 +88,23 @@ const actualizarCarrito = () => {
         div.className = ("carrito-contenedor")
         div.innerHTML = `
         <p>${prod.nombre}</p>
-        <p>Precio: ${prod.precio}</p>
-        <p>Cantidad: <span id="cantidad">${prod.cantidad}</span></p>
+        <p class="fw-bold">Precio: </p><span>${prod.precio}</span>
+        <p class="fw-bold">Cantidad: </p><span id="cantidad" class="cantidad">${prod.cantidad}</span>
+        <div class="d-flex"><button id="aumentar" class="m-2 aumentar">+</button><button id="disminuir" class="m-2 disminuir">-</button></div>
         <button onclick="eliminarDelCarrito(${prod.id})"><i class='bx bx-x'></i></button>
         `
         contenedorCarrito.appendChild(div)
+        const aumentarCantidad = document.querySelector(".aumentar")
+        const disminuirCantidad = document.querySelector(".disminuir")  
+        const cantidad = document.querySelector(".cantidad")
+        aumentarCantidad.addEventListener("click", () => {
+            prod.cantidad++
+            cantidad.innerText = prod.cantidad
+        })
+        disminuirCantidad.addEventListener("click", () => {
+            prod.cantidad--
+            cantidad.innerText = prod.cantidad
+        })
     })
     unidadCarrito.innerText = carrito.length
     precioTotal.innerText = carrito.reduce((acc, prod) => acc + prod.precio, 0)
